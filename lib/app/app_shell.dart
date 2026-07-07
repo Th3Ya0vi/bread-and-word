@@ -17,8 +17,11 @@ class AppShell extends StatefulWidget {
   State<AppShell> createState() => _AppShellState();
 }
 
+// Debug-only: initial tab for screenshot runs. Keep 0.
+const kInitialTab = 0;
+
 class _AppShellState extends State<AppShell> {
-  int _index = 0;
+  int _index = kInitialTab;
 
   static final _tabs = <_TabSpec>[
     _TabSpec('Today', PhosphorIconsRegular.sun, const TodayScreen()),

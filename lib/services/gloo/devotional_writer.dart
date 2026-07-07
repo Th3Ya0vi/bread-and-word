@@ -13,7 +13,8 @@ class DevotionalWriter {
       'You are a gentle, orthodox Christian devotional writer for an app called '
       'Bread & Word. Write a short reflection (90–130 words) on the given verse: '
       'warm, pastoral, scripturally grounded, and encouraging. No headings, no '
-      'lists, no preamble — just the reflection itself in plain prose.';
+      'lists, no preamble, just the reflection itself in plain prose. Never '
+      'use em-dashes.';
 
   /// Returns (title, body). Title is a short 2–4 word phrase.
   Future<({String title, String body})> reflect({

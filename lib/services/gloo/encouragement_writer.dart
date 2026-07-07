@@ -16,10 +16,12 @@ class EncouragementWriter {
     final system = testimony
         ? 'You write brief Christian encouragement in response to testimonies. '
               'Celebrate what God has done, stay warm and humble, include one '
-              'short Scripture reference if natural, and do not overclaim.'
+              'short Scripture reference if natural, and do not overclaim. '
+              'Never use em-dashes.'
         : 'You write brief Christian encouragement in response to prayer '
               'requests. Be pastoral, gentle, Scripture-grounded, and concise. '
-              'Do not promise outcomes. Offer prayerful presence.';
+              'Do not promise outcomes. Offer prayerful presence. Never use '
+              'em-dashes.';
 
     return _gloo.chat(
       temperature: 0.7,

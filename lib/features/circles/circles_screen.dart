@@ -3,6 +3,8 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../../services/firebase/social_repository.dart';
 import '../../services/reading_progress.dart';
+import '../../services/youversion/youversion_client.dart';
+import '../../services/youversion/youversion_models.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_typography.dart';
 import '../../widgets/bw_button.dart';
@@ -211,11 +213,40 @@ class CircleDetailScreen extends StatefulWidget {
 
 class _CircleDetailScreenState extends State<CircleDetailScreen> {
   final _controller = TextEditingController();
+  final _yv = YouVersionClient();
   bool _sending = false;
+
+  // Always renderable: start on the fallback, swap to live data as it
+  // arrives (same pattern as Today — no spinner, no stuck loading state).
+  Passage _verse = const Passage(
+    id: 'PSA.133.1',
+    reference: 'Psalm 133:1',
+    text:
+        'Behold, how good and how pleasant it is for brethren to dwell '
+        'together in unity!',
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _loadVerse();
+  }
+
+  Future<void> _loadVerse() async {
+    try {
+      final verse = await _yv.verseOfDay().timeout(
+        const Duration(seconds: 8),
+      );
+      if (mounted) setState(() => _verse = verse);
+    } catch (_) {
+      // keep fallback
+    }
+  }
 
   @override
   void dispose() {
     _controller.dispose();
+    _yv.close();
     super.dispose();
   }
 
@@ -277,10 +308,15 @@ class _CircleDetailScreenState extends State<CircleDetailScreen> {
                   children: [
                     SectionHeader(
                       eyebrow: dateKey,
-                      title: 'What Is God Showing You?',
+                      title: 'Read Today’s Word Together',
                       subline:
-                          'Share one short reflection from today’s Scripture.',
+                          'One passage for the whole circle, then share what '
+                          'God is showing you.',
                     ),
+                    const SizedBox(height: 14),
+                    _SharedPassageCard(verse: _verse),
+                    const SizedBox(height: 22),
+                    const RuleLabel('Your reflection'),
                     const SizedBox(height: 14),
                     _ReflectionComposer(
                       controller: _controller,
@@ -335,6 +371,40 @@ class _CircleDetailScreenState extends State<CircleDetailScreen> {
       ),
     ),
   );
+}
+
+class _SharedPassageCard extends StatelessWidget {
+  const _SharedPassageCard({required this.verse});
+  final Passage verse;
+
+  @override
+  Widget build(BuildContext context) {
+    return BwCard(
+      color: AppColors.paperBright,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(width: 6, height: 6, color: AppColors.accent),
+              const SizedBox(width: 7),
+              Text(
+                'TODAY’S SHARED PASSAGE',
+                style: AppType.mono(9, color: AppColors.accent),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text(verse.text, style: AppType.body(17, height: 1.55)),
+          const SizedBox(height: 10),
+          Text(
+            '— ${verse.reference.toUpperCase()}',
+            style: AppType.mono(10, color: AppColors.inkFaded),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class _ReflectionComposer extends StatelessWidget {
