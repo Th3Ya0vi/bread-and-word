@@ -1,0 +1,13 @@
+# Gitleaks allowlist for the public export check (scripts/export-public.sh).
+# Firebase *client* config keys are publishable by design (access is gated by
+# Firestore/Storage rules, not the key). Podfile.lock entries are checksums.
+[extend]
+useDefault = true
+
+[allowlist]
+paths = [
+  '''lib/firebase_options\.dart''',
+  '''android/app/google-services\.json''',
+  '''ios/Runner/GoogleService-Info\.plist''',
+  '''ios/Podfile\.lock''',
+]

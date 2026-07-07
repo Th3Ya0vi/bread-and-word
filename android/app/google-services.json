@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "972192467262",
+    "firebase_url": "https://breadandword-default-rtdb.firebaseio.com",
+    "project_id": "breadandword",
+    "storage_bucket": "breadandword.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972192467262:android:58452a11643bb7e13d046f",
+        "android_client_info": {
+          "package_name": "com.breadandword.bread_and_word"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972192467262-a5456eibeie8tgdc4j7votpq76iapoho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBw0ebBJ0dbgkGKN5n4P51jK6tr2emoyQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972192467262-a5456eibeie8tgdc4j7votpq76iapoho.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "972192467262-2rm0o5lj2sbst4jlavno3t1joa54r16s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.breadandword.breadAndWord"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

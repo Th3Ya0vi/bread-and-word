@@ -1,0 +1,7 @@
+{
+  "YOUVERSION_APP_KEY": "your-youversion-app-key",
+  "GLOO_CLIENT_ID": "your-gloo-client-id",
+  "GLOO_CLIENT_SECRET": "your-gloo-client-secret",
+  "AGORA_APP_ID": "your-agora-app-id",
+  "FOLDR_API_KEY": "your-foldr-space-api-key"
+}
